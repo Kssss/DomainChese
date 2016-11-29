@@ -15,6 +15,12 @@
  *  @param domains     域名数组（格式为：http://www.baidu.com）
  *  @param domainblock 返回最优的域名Str
  */
-+(void)domainSelectWithTimes:(int)times domains:(NSArray *)domains succseBlock:(void (^)(NSString *bestDomain))domainblock;
-
++(void)domainSelectWithTimes:(int)times domains:(NSArray *)domains succseBlock:(void (^)(NSString *bestDomain,NSString *result))domainblock;
 @end
+
+@interface CJDomainInfo :NSObject
+@property (assign, nonatomic) double time;
+@property (assign,nonatomic) int index;
+@end
+
+

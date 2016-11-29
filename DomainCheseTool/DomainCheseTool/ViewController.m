@@ -12,12 +12,13 @@ NSString * const kCJAppFileAddrssOne = @"http://www.baidu.com";
 NSString * const kCJAppFileAddrssTwo = @"http://www.sina.com.cn";
 NSString * const kCJAppFileAddrssThree = @"https://github.com";
 NSString * const kCJAppFileAddrssFour = @"http://www.qq.com";
-NSString * const kCJAppFileAddrssFive = @"http://stackoverflow.com";
+NSString * const kCJAppFileAddrssFive = @"http://www.cocoachina.com";
 
 NSString *  kCJBestAppFileAddrss;
 
 
 @interface ViewController ()
+    @property (weak, nonatomic) IBOutlet UITextView *txView;
 
 @end
 
@@ -25,14 +26,18 @@ NSString *  kCJBestAppFileAddrss;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    kCJBestAppFileAddrss = kCJAppFileAddrssThree;//先设置一个默认的地址。
-
+    
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    NSArray *domainArray = @[kCJAppFileAddrssTwo,kCJAppFileAddrssThree,kCJAppFileAddrssOne,kCJAppFileAddrssFour,kCJAppFileAddrssFive];
-    [CJDomainSelect domainSelectWithTimes:3 domains:domainArray succseBlock:^(NSString *bestDomain) {
+    _txView.userInteractionEnabled = YES;
+     self.txView.text = @"获取中。。。。。";
+    NSArray *domainArray = @[kCJAppFileAddrssOne,kCJAppFileAddrssTwo,kCJAppFileAddrssThree,kCJAppFileAddrssFour,kCJAppFileAddrssFive];
+    kCJBestAppFileAddrss = kCJAppFileAddrssThree;//先设置一个默认的地址。
+    [CJDomainSelect domainSelectWithTimes:6 domains:domainArray succseBlock:^(NSString *bestDomain,NSString *result) {
+        _txView.userInteractionEnabled = NO;
         kCJBestAppFileAddrss = bestDomain;
-        NSLog(@"访问最快的域名地址是：%@",bestDomain);
+        self.txView.text = [NSString stringWithFormat:@"响应最快的域名地址是：%@\n,总结果是：%@",bestDomain,result];
+        NSLog(@"响应最快的域名地址是：%@,总结果是：%@",bestDomain,result);
     }];
 
 }
