@@ -30,7 +30,7 @@ NSString *  kCJBestAppFileAddrss;
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     NSArray *domainArray = @[kCJAppFileAddrssTwo,kCJAppFileAddrssThree,kCJAppFileAddrssOne,kCJAppFileAddrssFour,kCJAppFileAddrssFive];
-    [CJDomainSelect domainSelectWithTimes:5 domains:domainArray succseBlock:^(NSString *bestDomain) {
+    [CJDomainSelect domainSelectWithTimes:3 domains:domainArray succseBlock:^(NSString *bestDomain) {
         kCJBestAppFileAddrss = bestDomain;
         NSLog(@"访问最快的域名地址是：%@",bestDomain);
     }];

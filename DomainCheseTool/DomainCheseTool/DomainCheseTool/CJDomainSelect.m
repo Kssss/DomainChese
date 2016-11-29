@@ -138,8 +138,9 @@ static int overNum;
     overNum ++;
     [self.runOver addObject:@(index)];
     if (overNum == self.domains.count) {
-        for (<#initialization#>; <#condition#>; <#increment#>) {
-            <#statements#>
+        NSLog(@"域名的访问速度排名:");
+        for (NSString *index in self.runOver) {
+            NSLog(@"%@",self.domains[[index intValue]]);
         }
         self.domainblock(self.domains[[self.runOver[0] intValue]]);
     }
